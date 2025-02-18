@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif; /* Corrected font family */
+}
+
+.navSection {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(73, 73, 240);
+    align-items: center;
+    color: white;
+    padding: 0 20px;
+    font-size: large;
+    
+}
+
+.navSection span{
+    cursor: pointer;
+}
+
+.sideBarSection {
+    width: 100%;
+    max-width: 15%;
+    height: 95vh;
+    padding-top: 10px;
+    background-color: lightgray;
+}
+
+.sideBarSection ul li{
+    list-style: none;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: medium;
+    cursor: pointer;
+
+}
+
+.collectionSection{
+    display: flex;
+}
+
+
+/* login section */
+
+.loginSection{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.authForm{
+    width: 100%;
+    max-width: 50%;
+    margin-top: -230px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.authForm input{
+    width: 100%;
+    max-width: 55%;
+    height: 1.4rem;
+}
+.authForm label{
+    width: 100%;
+    max-width: 55%;
+    font-weight: 400;
+}
+
+.registerSection{
+    padding-top: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+
+/* firmSection */
+.firmSection{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.tableForm{
+    width: 100%;
+    max-width: 50%;
+    margin-top: -100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.tableForm input{
+    width: 100%;
+    max-width: 85%;
+    height: 35px;
+    margin-bottom: 10px;
+    
+}
+.tableForm label{
+    width: 100%;
+    max-width: 85%;
+    font-weight: 600;
+}
+
+/*checkbox css */
+/* Styles for the checkbox section */
+.checkInp {
+    width: 100%;
+    max-width: 85%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.checkInp label {
+    width: 20%;
+    font-weight: bold;
+}
+
+.inputsContainer {
+    display: flex;
+    gap: 20px;
+    width: 80%;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.checkboxContainer label {
+    font-weight: normal;
+    font-size: medium;
+    
+}
+
+.checkboxContainer input[type="checkbox"] {
+    width: 26px;
+    height: 26px;
+    margin: 0;
+}
+
+.regionboxContainer label{
+    font-weight: normal;
+    align-items: center;
+
+}
+.regioninputsContainer{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 10px;
+    
+}
+
+.regionboxContainer input[type="checkbox"]{
+    width: 26px;
+    height: 26px;
+    margin-top: 5px;
+}
+
+/* product table */
+.product-table{
+    border:2px solid red;
+    width: 80vw;
+    border-collapse: collapse;
+    margin-top: 50px;
+    margin-left: 30px;
+
+}
+
+.product-table th,
+.product-table td{
+    border: 1px solid grey;
+    padding: 8px;
+}
+
+.product-table th{
+    text-align: left;
+    background-color: gray;
+}
+
