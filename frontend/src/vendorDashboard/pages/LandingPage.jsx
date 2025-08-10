@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import NavBar from '../components/NavBar'
 import SideBar from '../components/SideBar'
 import Login from '../components/forms/Login'
@@ -9,12 +9,38 @@ import Welcome from '../components/Welcome'
 import AllProducts from '../components/AllProducts'
 
 
+
 const LandingPage = () => {
   const [showLogin,setShowLogin]=useState(false);
   const [showRegister,setShowRegister]=useState(false);
   const [showFirm,setShowFirm]=useState(false);
   const [showProduct,setShowProduct]=useState(false);
   const [showWelcome,setShowWelcome]=useState(false);
+  const [showAllProducts,setShowAllProducts]=useState(false);
+  const [showLogout,setShowLogOut]=useState(false)
+  const [showFirmTitle,setShowFirmTitle]=useState(false)
+  
+  useEffect(() => {
+    const loginToken = localStorage.getItem('login-token');
+    if (loginToken) {
+      setShowLogOut(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const firmName = localStorage.getItem('firmName');
+    setShowFirmTitle(!!firmName);
+  }, []);
+
+  const logOutHandler = () => {
+    if (confirm("Are you sure to logout?")) {
+      localStorage.removeItem('login-token');
+      localStorage.removeItem('firmId');
+      localStorage.removeItem('firmName');
+      setShowFirmTitle(false); // Corrected
+      setShowLogOut(false);
+    }
+  };
 
   const showWelcomeHandler=()=>{
     setShowLogin(false)
@@ -22,6 +48,20 @@ const LandingPage = () => {
     setShowFirm(false)
     setShowProduct(false)
     setShowWelcome(true)
+    setShowAllProducts(false)
+  }
+  const showAllProductsHandler=()=>{
+    if(showLogout){
+    setShowLogin(false)
+    setShowRegister(false)
+    setShowFirm(false)
+    setShowProduct(false)
+    setShowWelcome(false)
+    setShowAllProducts(true)
+  }else{
+    alert("please Login")
+    setShowLogin(true)
+  }
   }
 
   const showLoginHandler=()=>{
@@ -30,6 +70,7 @@ const LandingPage = () => {
     setShowFirm(false)
     setShowProduct(false)
     setShowWelcome(false)
+    setShowAllProducts(false)
   }
   const showRegisterHandler=()=>{
     setShowRegister(true)
@@ -37,37 +78,59 @@ const LandingPage = () => {
     setShowFirm(false)
     setShowProduct(false)
     setShowWelcome(false)
+    setShowAllProducts(false)
+    
   }
   const showFirmHandler=()=>{
+    if(showLogout){
     setShowRegister(false)
     setShowLogin(false)
     setShowFirm(true)
     setShowProduct(false)
     setShowWelcome(false)
+    setShowAllProducts(false)
+    }else{
+      alert("please Login")
+      setShowLogin(true)
+    }
   }
   const showProductHandler=()=>{
+    if(showLogout){
     setShowRegister(false)
     setShowLogin(false)
     setShowFirm(false)
     setShowProduct(true)
     setShowWelcome(false)
+    setShowAllProducts(false)
+  }else{
+    alert("please Login")
+    setShowLogin(true)
+  }
   }
   return (
-    <>
-        <section className='landingSection'>
-            <NavBar showLoginHandler={showLoginHandler} showRegisterHandler={showRegisterHandler} />
-            <div className="collectionSection">
-              <SideBar showFirmHandler={showFirmHandler} showProductHandler={showProductHandler}/>
-              {showLogin && <Login showWelcomeHandler={showWelcomeHandler}/>}
-              {showRegister && <Register showLoginHandler={showLoginHandler}/>}
-              {showFirm && <AddFirm/>}
-              {showProduct && <AddProduct/>}
-              {showWelcome && <Welcome/>}
-              <AllProducts/>
-            </div>
-        </section>
-    </>
-  )
-}
-
+    <section className='landingSection'>
+      <NavBar 
+        showLoginHandler={showLoginHandler} 
+        showRegisterHandler={showRegisterHandler}
+        showLogout={showLogout} 
+        logOutHandler={logOutHandler} 
+      />
+      <div className="collectionSection">
+        <SideBar 
+          showFirmHandler={showFirmHandler} 
+          showProductHandler={showProductHandler}
+          showAllProductsHandler={showAllProductsHandler} 
+          showFirmTitle={showFirmTitle}
+          showLogout={showLogout} // Pass showLogout
+        />
+        {showLogin && <Login showWelcomeHandler={showWelcomeHandler} />}
+        {showRegister && <Register showLoginHandler={showLoginHandler} />}
+        {showFirm && showLogout && <AddFirm onSuccess={() => setShowFirmTitle(true)} />}
+        {showProduct && showLogout && <AddProduct />}
+        {showWelcome && <Welcome />}
+        {showAllProducts && showLogout && <AllProducts />}
+      </div>
+    </section>
+  );
+};
 export default LandingPage

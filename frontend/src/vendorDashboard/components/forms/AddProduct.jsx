@@ -20,7 +20,7 @@ const AddProduct = () => {
 
     const handleImageUpload = (event) => {
         const selectedImage = event.target.files[0];
-        setImage(selectedImage); // Use setImage instead of setFile
+        setImage(selectedImage);
     };
 
     const handleBestSeller = (event) => {
@@ -36,6 +36,7 @@ const AddProduct = () => {
 
             if (!loginToken || !firmId) {
                 console.error("User not authenticated");
+                alert("You are not logged in. Please log in and try again.");
                 return;
             }
 
@@ -88,11 +89,10 @@ const AddProduct = () => {
     return (
         <div className="firmSection">
             <form className="tableForm" onSubmit={handleAddProduct}>
-                <h2>Add Product</h2>
+                <h3>Add Product</h3>
                 <label>Product Name</label>
                 <input
                     type="text"
-                    name="productName"
                     value={productName}
                     onChange={(e) => setProductName(e.target.value)}
                 />
@@ -103,63 +103,33 @@ const AddProduct = () => {
                     onChange={(e) => setPrice(e.target.value)}
                 />
                 <div className="checkInp">
-                    <label>Category</label>
-                    <div className="inputsContainer">
-                        <div className="checkboxContainer">
-                            <label>Veg</label>
-                            <input
-                                type="checkbox"
-                                value="veg"
-                                checked={category.includes('veg')}
-                                onChange={handleCategoryChange}
-                            />
-                        </div>
-                        <div className="checkboxContainer">
-                            <label>Non-Veg</label>
-                            <input
-                                type="checkbox"
-                                value="non-veg"
-                                checked={category.includes('non-veg')}
-                                onChange={handleCategoryChange}
-                            />
-                        </div>
-                    </div>
+                <label>Category</label>
+                <div className="inputsContainer">
+                <div className="checkboxContainer">
+                    
+                <label>Veg</label>
+                <input type="checkbox" value="veg" onChange={handleCategoryChange} />&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                <label>Non-Veg</label>
+                <input type="checkbox" value="non-veg" onChange={handleCategoryChange} /> 
                 </div>
-                <div className="checkInp">
-                    <label>BestSeller</label>
-                    <div className="inputsContainer">
-                        <div className="checkboxContainer">
-                            <label>Yes</label>
-                            <input
-                                type="radio"
-                                value="true"
-                                checked={bestSeller === true}
-                                onChange={handleBestSeller}
-                            />
-                        </div>
-                        <div className="checkboxContainer">
-                            <label>No</label>
-                            <input
-                                type="radio"
-                                value="false"
-                                checked={bestSeller === false}
-                                onChange={handleBestSeller}
-                            />
-                        </div>
-                    </div>
+                </div>
+                </div>
+                <label>BestSeller</label>
+                <div className='checkboxer'>
+                    <label>Yes</label>
+                <input type="radio" value="true" checked={bestSeller === true} onChange={handleBestSeller} />
+                <label>No</label>
+                <input type="radio" value="false" checked={bestSeller === false} onChange={handleBestSeller} /> 
                 </div>
                 <label>Description</label>
-                <input
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                 <label>Product Image</label>
                 <input type="file" onChange={handleImageUpload} />
                 <br />
                 <div className="btnSubmit">
-                    <button type="submit">Submit</button>
-                </div>
+          <button type="submit">Submit</button>
+        </div>
             </form>
         </div>
     );

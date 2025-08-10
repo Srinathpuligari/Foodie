@@ -31,6 +31,7 @@ const AddFirm = () => {
     const selectedImage = event.target.files[0];
     setFile(selectedImage);
   };
+  
 
   const handleFirmSubmit = async (e) => {
     e.preventDefault();
@@ -99,7 +100,7 @@ const AddFirm = () => {
   return (
     <div className="firmSection">
       <form className="tableForm" onSubmit={handleFirmSubmit}>
-        <h2>Add Firm</h2>
+        <h3>Add Firm</h3>
         <label>Firm Name</label>
         <input type="text" name="firmName" value={firmName} onChange={(e) => setFirmName(e.target.value)} />
         <label>Area</label>
